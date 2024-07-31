@@ -1,8 +1,12 @@
 { ... }:
 
 {
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  imports = [
+    ./homelab.nix
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   time.timeZone = "Europe/Helsinki";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -21,10 +25,18 @@
 
   services.openssh.enable = true;
 
-  networking = {
-    useDHCP = false;
-
-    defaultGateway.address = "192.168.0.1";
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+  homelab.networking = {
+    enable = true;
+    subnet = "192.168.0";
+    interface = "ens33";
   };
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  system.stateVersion = "24.05";
 }
