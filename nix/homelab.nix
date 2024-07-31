@@ -30,7 +30,7 @@ in {
         useDHCP = false;
         ipv4.addresses = [
           {
-            address = "${cfg.networking.subnet}.${cfg.networking.ipv4}";
+            address = "${cfg.networking.subnet}.${builtins.toString cfg.networking.ipv4}";
             prefixLength = 24;
           }
         ];
