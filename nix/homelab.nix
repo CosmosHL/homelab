@@ -7,7 +7,7 @@ in {
     enable = mkEnableOption "Enable Homelab Networking";
     ipv4 = mkOption {
       type = types.int;
-      example = 2;
+      example = "2";
       description = "IPv4 Address";
     };
     interface = mkOption {
