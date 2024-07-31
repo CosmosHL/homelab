@@ -18,8 +18,11 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
 
+    hashedPassword = "$6$nGrNZImY5jW423Uz$rUOWUPPdyBLNDJfYcfX1lc2ApD5e193BKg.aY282zrBECxu/K47/h7.iJ9I9LLEAl3ugMqWfhQA.6hPs236vG0";
+
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEF0CqpENoQj92TeNG2LGxB8yYdnF1DtHjmIQffzJ9nT"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEF0CqpENoQj92TeNG2LGxB8yYdnF1DtHjmIQffzJ9nT ozoku@COSMOS"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYi6cycQXiyWUfzccxVx7vWsU6erITNXxcvxxncoJup ozoku@titan"
     ];
   };
 
