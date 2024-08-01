@@ -30,7 +30,7 @@
 
   homelab.networking = {
     enable = true;
-    subnet = "192.168.0";
+    subnet = "192.168.20";
     interface = "ens33";
   };
 
