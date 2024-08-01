@@ -28,6 +28,12 @@
 
   services.openssh.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+    dig
+  ];
+
   homelab.networking = {
     enable = true;
     subnet = "192.168.20";
