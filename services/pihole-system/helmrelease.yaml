@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pihole-release
+  namespace: pihole-system
+spec:
+  chart:
+    spec:
+      chart: pihole
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pihole-repo
+      version: 2.26.1
+  interval: 1m0s
+  values:
+    DNS1: 192.168.20.1
+    DNS2: 1.1.1.1
+    ingress:
+      enabled: true
+      hosts:
+      - pihole.cosmos.home
+    persistentVolumeClaim:
+      enabled: true
+    replicaCount: 1
+    serviceDhcp:
+      enabled: false
+    serviceDns:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      loadBalancerIP: 192.168.20.250
+      type: LoadBalancer
+    serviceWeb:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      loadBalancerIP: 192.168.20.250
+      type: LoadBalancer

@@ -1,8 +1,5 @@
 # TODO
 
-1. Flux
-2. Longhorn
-3. Metal-LB
 4. PiHole & External DNS
 5. Traefik & Cert Manager
 6. Authentik
