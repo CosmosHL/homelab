@@ -6,7 +6,7 @@ metadata:
   namespace: pihole-system
 spec:
   interval: 1m0s
-  url: https://moju2600.github.io/pihole-kubernetes/
+  url: https://mojo2600.github.io/pihole-kubernetes/
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
