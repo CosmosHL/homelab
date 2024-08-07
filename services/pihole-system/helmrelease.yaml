@@ -19,6 +19,7 @@ spec:
     DNS2: 1.1.1.1
     ingress:
       enabled: true
+      ingressClassName: traefik-external
       hosts:
       - pihole.cosmos.home
     persistentVolumeClaim:
