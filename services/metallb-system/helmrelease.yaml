@@ -12,5 +12,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metallb-repo
-      version: 0.14.18
+      version: 0.14.8
   interval: 1m0s
