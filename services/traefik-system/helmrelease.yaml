@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik-release
+  namespace: traefik-system
+spec:
+  chart:
+    spec:
+      chart: traefik
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+      version: 30.0.2
+  interval: 1m0s
+  values:
+    globalArguments:
+      - "--global.sendanonymoususage=false"
+      - "--global.checknewversion=false"
+
+    additionalArguments:
+      - "--serversTransport.insecureSkipVerify=true"
+      - "--log.level=INFO"
+
+    deployment:
+      enabled: true
+      replicas: 3
+    
+    ports:
+      web:
+        redirectTo:
+          port: websecure
+          priority: 10
+      websecure:
+        http3:
+          enabled: true
+        advertisedPort: 443
+        tls:
+          enabled: true
+    
+    ingressRoute:
+      dashboard:
+        enabled: true
+
+    providers:
+      kubernetesCRD:
+        enabled: true
+        ingressClass: traefik-external
+        allowExternalNameServices: true
+      kubernetesIngress:
+        enabled: true
+        allowExternalNameServices: true
+        publishedService:
+          enabled: false
+
+    rbac:
+      enabled: true
+    
+    service:
+      enabled: true
+      type: LoadBalancer
+      spec:
+        loadBalancerIP: 192.168.20.210
